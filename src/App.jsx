@@ -22,6 +22,7 @@ import ContributorDetail from "./pages/contributor/ContributorDetail";
 
 import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
+import PasswordRecovery from "./pages/auth/PasswordRecovery"; // Import PasswordRecovery component
 import ChanakyaGpt from "./pages/resources/ChanakyaGpt";
 import "./App.css";
 import AnimatedCursor from "react-animated-cursor";
@@ -56,11 +57,7 @@ function App() {
   }, [showScroll]);
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
+    document.body.classList.toggle("dark", isDarkMode);
   }, [isDarkMode]);
 
   useEffect(() => {
@@ -105,21 +102,19 @@ function App() {
             <Route exact path="/resources/news" element={<ChanakyaNews />} />
             <Route exact path="/resources/quiz" element={<ChanakyaQuiz />} />
             <Route exact path="/resources/video" element={<ChanakyaVideo />} />
+            <Route exact path="/resources/chanakyagpt" element={<ChanakyaGpt />} />
+            <Route exact path="/contributor" element={<Contributors />} />
+            <Route exact path="/contributor/details" element={<ContributorDetail />} />
+            
+            {/* Authentication Pages */}
+            <Route exact path='/auth/login' element={<Login />} />
+            <Route exact path='/auth/signup' element={<SignUp />} />
             <Route
               exact
-              path="/resources/chanakyagpt"
-              element={<ChanakyaGpt />}
-            />
-
-            <Route exact path="/contributor" element={<Contributors />} />
-            <Route
-              path="/contributor/details"
-              element={<ContributorDetail />}
-            />
-
-            {/* Authentication Pages */}
-            <Route exact path="/auth/login" element={<Login />} />
-            <Route exact path="/auth/signup" element={<SignUp />} />
+              path='/auth/password-recovery'
+              element={<PasswordRecovery />}
+            />{" "}
+            {/* Add PasswordRecovery route */}
           </Routes>
         </main>
 
